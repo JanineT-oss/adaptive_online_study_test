@@ -10,7 +10,7 @@ html, body, .container
 
 /*background image: always cover up browser window*/
 html{
-	background: url(logos/moneyplant.jpg) no-repeat center fixed;
+	/*background: url(logos/moneyplant.jpg) no-repeat center fixed;*/
 	background-size: cover;
   }
 

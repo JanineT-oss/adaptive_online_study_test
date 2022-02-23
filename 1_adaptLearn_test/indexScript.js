@@ -7,6 +7,7 @@ toConsBtn = document.querySelectorAll("#toConsBtn");
 toDemoBtn = document.querySelectorAll("#toDemoBtn");
 toExpBtn = document.querySelectorAll("#toExpBtn");
 
+// 1. PROLIFIC ID TO CONSENT FORM (display info, check if user interacts, move on)
 document.getElementById("toConsBtn").addEventListener('click', function(e){
   e.preventDefault();
   // get prolific id form element to check validity
@@ -26,6 +27,7 @@ document.getElementById("toConsBtn").addEventListener('click', function(e){
   }
 });
 
+// 2. CONSENT FORM TO DEMOGRAPHICS (display info, check if user interacts, move on, prep infos to store)
 document.getElementById("toDemoBtn").addEventListener('click', function(e){
   e.preventDefault();
   // get consent form element to check validity
@@ -66,6 +68,7 @@ document.getElementById("toDemoBtn").addEventListener('click', function(e){
   }
 });
 
+// 3. DEMOGRAPHICS TO EXPERIMENT (display info, check if user interacts, move on, prep infos to store)
 document.getElementById("toExpBtn").addEventListener('click', function(e){
   e.preventDefault();
   // get consent form element to check validity
@@ -81,11 +84,27 @@ document.getElementById("toExpBtn").addEventListener('click', function(e){
       // remove finished survey and load new survey
       demographics[0].style.display = "none";
       expplaceholder[0].style.display = "block";
+
+      // create FormData object
+      let formData = new FormData(demographicsform);
+
+      // convert FormData to JSON
+      let formJSON = Object.fromEntries(formData.entries());
+      
+      // get date and time for storage
+      let jsdate = new Date();
+      let date = jsdate.toLocaleDateString();
+      let time = jsdate.toLocaleTimeString();
+      formJSON['date'] = date;
+      formJSON['time'] = time;
+
+      // AJAX to save data and redirect
+      saveSurvey(formJSON);
+
   }
 });
 
-
-
+// 4. CALL SAVE REQUEST CONSENT
 function saveConsent(data) {
   // creates object with prolific id and experiment data
   // sends json-object to php for storage
@@ -94,10 +113,31 @@ function saveConsent(data) {
   let xhr = new XMLHttpRequest();
   xhr.open('POST', 'saveConsent.php');
   xhr.setRequestHeader('Content-Type', 'application/json');
- 
-  console.log('i want store data');
+  xhr.send(JSON.stringify(params));
+
+  console.log('i want store this data:');
+  console.log(params);
+};
+
+// 5. CALL SAVE REQUEST DEMOGRAPHICS AND TRIGGER EXP (noch auskommentiert)
+function saveSurvey(data) {
+  // creates object with prolific id and experiment data
+  // sends json-object to php for storage
+  let params = {
+      "prolific_id": sessionStorage.getItem('prolific_id'),
+      "data": data
+  };    
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', 'saveDemographics.php');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  
+  //xhr.onload = function(){
+  //  window.location.assign("rewad_part1.html");
+  //};
   
   xhr.send(JSON.stringify(params));
 
+  console.log('i want store this data:');
   console.log(params);
+
 };

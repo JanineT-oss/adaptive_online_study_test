@@ -7,7 +7,6 @@ $post_data = json_decode(file_get_contents('php://input'), true);
 // extract ID and JSPsych data
 $id = $post_data['prolific_id'];
 $save_data = $post_data['data'];
-//print_r($post_data);
 echo $id;
 
 // the directory "data" must be writable by the www-data user!
@@ -16,6 +15,19 @@ $name = "/".$id."_demographics.json";
 
 // write the file to disk
 file_put_contents($name, json_encode($save_data));
+
+
+// test write data janine
+$nameFile = "/Applications/MAMP/htdocs/1_adaptLearn_test/data/testfile_demo.txt";
+file_put_contents($nameFile, $post_data);
+
+if (is_writable($nameFile)) {
+  $message = "The file $nameFile exists";
+} else {
+  $message = "The file $nameFile does not exist";
+}
+//echo $message;
+echo json_encode($message);
 
 // SAVE TO DB
 include('database_config.php');

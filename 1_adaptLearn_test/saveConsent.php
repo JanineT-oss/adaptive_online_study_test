@@ -6,20 +6,16 @@ include('database_config.php');
 $table_data = 'consent';
 
 $data = json_decode(file_get_contents('php://input'), true);
-// json format: $data['prolific_id']
-
-
 $prolific_id = $data['prolific_id'];
-//$prolific_id = filter_var($prolific_string, FILTER_VALIDATE_REGEXP, array("options" => array("regexp"=>"[a-zA-Z0-9-]+")));
-echo $prolific_id ;
 
-$name = "/Applications/MAMP/htdocs/1_adaptLearn_test/data/testfile.txt";
-file_put_contents($name, $data, $prolific_id);
 
-if (is_writable($name)) {
-  $message = "The file $name exists";
+$nameFile = "/Applications/MAMP/htdocs/1_adaptLearn_test/data/testfile_consent.txt";
+file_put_contents($nameFile, $data, $prolific_id);
+
+if (is_writable($nameFile)) {
+  $message = "The file $nameFile exists";
 } else {
-  $message = "The file $name does not exist";
+  $message = "The file $nameFile does not exist";
 }
 //echo $message;
 echo json_encode($message);
@@ -47,7 +43,7 @@ try {
    // '$new_id','$consent1','$consent2', '$consent3',
    // '$consent4', '$consent5', '$consent6','$consent7', '$date', '$time')";
 
-   $sql = "INSERT INTO $table_data(`consent1`, `consent2`) VALUES ('$consent1','$consent2')";
+   $sql = "INSERT INTO $table_data (`consent1`, `consent2`) VALUES ('$consent1','$consent2')";
 
 
     $insertstmt = $conn->prepare($sql);
