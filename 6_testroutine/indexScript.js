@@ -1,6 +1,6 @@
 
  document.getElementById('postForm').addEventListener('submit', postName);
- console.log('test test');
+ console.log('entering javascript file...');
 
  function postName(e){
     e.preventDefault();
@@ -17,10 +17,7 @@
     xhr.onload=function(){
         console.log(this.responseText);
     }
-    
-    xhr.send(JSON.stringify(params));
- 
 
-   console.log($message);
+    xhr.send(JSON.stringify(params));
 }
 
