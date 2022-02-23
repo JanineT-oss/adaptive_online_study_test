@@ -8,16 +8,17 @@ $post_data = json_decode(file_get_contents('php://input'), true);
 $id = $post_data['prolific_id'];
 $save_data = $post_data['data'];
 //print_r($post_data);
+echo $id;
 
 // the directory "data" must be writable by the www-data user!
 // path to directory
-$name = "../data/".$id."_demographics.json";
+$name = "/".$id."_demographics.json";
 
 // write the file to disk
 file_put_contents($name, json_encode($save_data));
 
 // SAVE TO DB
-include('../php/database_config.php');
+include('database_config.php');
 $table_data = 'demographics';
 
 // json format: $data['prolific_id']

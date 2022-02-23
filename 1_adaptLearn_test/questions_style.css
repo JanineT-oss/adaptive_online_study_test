@@ -228,3 +228,15 @@ button:enabled{
 #prolific{
 	text-align:center;
 }
+
+#consent{
+	display: none;
+}
+
+#demographics{
+	display: none;
+}
+
+#expplaceholder{
+	display: none;
+}

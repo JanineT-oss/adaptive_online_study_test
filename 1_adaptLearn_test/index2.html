@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AG Computational Psychiatrie</title>
+    <link href="questions_style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">  
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="content">
+
+                    <div class="navbar"> 
+                        <h1 class="headline">
+                            PSYCH EXPERIMENTAL STUDIES<br> <span class="text-highlight"> PARTICIPATION = FUN!</span>
+                        </h1>
+
+                        <div>
+                            <a href = "mailto: georgia.koppe@zi-mannheim.de" target="_blank">contact</a><br>
+                            <a href="https://www.zi-mannheim.de/forschung/abteilungen-ags-institute/theoret-neurowissenschaften/arbeitsgruppen-theor-neurowiss/computational-psychiatry-dt.html">About us</a> 
+                        </div>
+
+                        <div class="header">
+                            <img class="logo" src='logos/zi-logo-rgb.png'></img>
+                        </div>                
+                    </div>   
+
+                    <div class="image-container">
+                        <img class="header-image" src="bild1.jpg">
+                     
+                        <div class="info">
+                            <div class="text-container">
+                                <h3>Welcome to our experiment!</h3>
+                                <p>Whilst completing the experiment, please <b>DO NOT close or refresh your browser window</b></p>
+                                <p>Thank you for your interest in taking part.</p>
+                                <p>On the next pages, you can read the study information. After reading this, we will ask you for your consent to 
+                                participate in our study. Only then your Prolific ID and data will be stored on our server.</p>
+                            </div>
+
+                            <form id="prolific">
+                                <div>
+                                    <div>
+                                        <b>Please enter your Prolific ID:</b>
+                                    </div>
+                                    <div>
+                                        <input type="text" id="prolific_id" name="prolific_id" pattern="[a-zA-Z0-9-]+"
+                                        required placeholder="Enter ID here">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="info">
+                            <form id="consentform">
+                                <!-- Consent Info -->
+                                <div class="surveyInfo">
+                                        <b>To continue with the study, please answer 
+                                        the following questions.</b>
+                                </div>
+                    
+                                <div class="questions">
+                                    <!-- Consent 1 -->
+                                    <div class="form-group">
+                                    
+                                        <div class="formQuestion">
+                                            1. I have read and understood the information above:
+                                        </div>
+                                        <div class="formOptions">
+                                            <div>
+                                                <input type="radio" name="consent1" id="consent1_1" value="yes"
+                                                required>
+                                                <label for="consent1_1">Yes</label>
+                                                <input type="radio" name="consent1" id="consent1_2" value="no">
+                                                <label for="consent1_2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                    
+                                    <!-- Consent 2 -->
+                                    <div class="form-group">
+                                    
+                                        <div class="formQuestion">
+                                            2. I have had the opportunity to ask questions
+                                                (if you had no questions, please select "Yes")
+                                        </div>
+                                        <div class="formOptions">
+                                            <div>
+                                                <input type="radio" name="consent2" id="consent2_1" value="yes"
+                                                required>
+                                                <label for="consent2_1">Yes</label>
+                                                <input type="radio" name="consent2" id="consent2_2" value="no">
+                                                <label for="consent2_2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                 
+                    
+                    <div class="btn-box">
+                        <button type="submit" id="nextBtn">Next</button>
+                    </div>
+
+
+                    <div id="message">
+                        <i class="fa fa-warning"></i>
+                    </div>
+
+        </div>
+    </div>
+
+    <script src="indexScript.js"></script>
+
+</body>
+</html>
