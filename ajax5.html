@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax 5 - fetch from PHP mysql</title>
+</head>
+<body>
+    
+    <button id="button">Get Users</button>
+    <br><br>
+    <h1>Users</h1>
+    <div id="users"></div>
+
+    <script>
+        document.getElementById('button').addEventListener('click', loadUsers);
+        
+             
+        function loadUsers(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'users.php', true);
+            //var test_s = this.status;
+            //console.log(test_s);
+
+            xhr.onload=function(){
+                if(this.status == 200){
+                    var users = JSON.parse(this.responseText);
+
+                    var output = '';
+
+                    for(var i in users){
+                        output += '<ul>' +
+                            '<li>ID: '+users[i].id+' </il>' +
+                            '<li>Name: '+users[i].name+' </il>' +
+                            '</ul>';
+                    }
+
+                    document.getElementById('users').innerHTML = output;
+
+                } else if(this.status == 404) {
+                    console.log('not found')
+                } else if(this.status == 403) {
+                    console.log('forbidden')
+                }
+            }
+        
+            xhr.send();
+        }
+    </script>
+    
+    
+</body>
+</html>
