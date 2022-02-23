@@ -64,7 +64,6 @@ document.getElementById("toDemoBtn").addEventListener('click', function(e){
     
       //console.log(consentJSON);
       saveConsent(consentJSON);
-
   }
 });
 
@@ -119,7 +118,7 @@ function saveConsent(data) {
   console.log(params);
 };
 
-// 5. CALL SAVE REQUEST DEMOGRAPHICS AND TRIGGER EXP (noch auskommentiert)
+// 5. CALL SAVE REQUEST DEMOGRAPHICS AND TRIGGER EXP 
 function saveSurvey(data) {
   // creates object with prolific id and experiment data
   // sends json-object to php for storage
@@ -130,14 +129,13 @@ function saveSurvey(data) {
   let xhr = new XMLHttpRequest();
   xhr.open('POST', 'saveDemographics.php');
   xhr.setRequestHeader('Content-Type', 'application/json');
-  
-  //xhr.onload = function(){
-  //  window.location.assign("rewad_part1.html");
-  //};
-  
   xhr.send(JSON.stringify(params));
 
   console.log('i want store this data:');
   console.log(params);
 
+  // CALLS EXP!
+  xhr.onload = function(){
+    window.location.assign("exp_part1.html");
+  };
 };
