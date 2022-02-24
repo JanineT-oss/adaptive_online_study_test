@@ -100,10 +100,10 @@ function runExperiment(dataPath) {
         // rew2 = rew2.slice(0,5)
 
 
-        // console.log(loss1);
-        // console.log(loss2);
-        // console.log(rew1);
-        // console.log(rew2);
+         console.log(loss1);
+         console.log(loss2);
+         console.log(rew1);
+         console.log(rew2);
         // run 2 forced choice task
         run2FC(loss1, loss2, rew1, rew2);
 
