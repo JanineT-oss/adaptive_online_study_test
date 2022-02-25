@@ -19,7 +19,7 @@ file_put_contents($name, json_encode($save_data));
 
 // test write data janine
 $nameFile = "/Applications/MAMP/htdocs/1_adaptLearn_test/data/testfile_demo.txt";
-file_put_contents($nameFile, $post_data);
+file_put_contents($nameFile, $save_data);
 
 if (is_writable($nameFile)) {
   $message = "The file $nameFile exists";

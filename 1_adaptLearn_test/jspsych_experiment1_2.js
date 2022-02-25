@@ -1,12 +1,4 @@
 
-//1. initialize jsPsych and saving result to a variable called jsPsych
-// add displayData via the on_finish callback function: which is useful for debugging; it will show the raw data collected at the end of the exp
-var jsPsych = initJsPsych({
-  on_finish: function() {
-    jsPsych.data.displayData();
-  }
-});
-
 
 //3. get path to testfile.json
 let dataPath = "testfiles/testfile_j.json";
@@ -82,8 +74,6 @@ function createTimeline(trialArray) {
 
 //6. stimulus template 
 function constructStim(picture, task, correct, images) {
-    // rando = randomize left/right presentation
-    // if rando == 0 -> immediate left, else right
 
     var trialtype = {
         type: jsPsychImageKeyboardResponse,
@@ -93,7 +83,6 @@ function constructStim(picture, task, correct, images) {
     
       console.log(trialtype);
 };
-
 
 //7. 
 function runExp(triallisting) {
@@ -167,15 +156,17 @@ function runExp(triallisting) {
             }
         ],
         timeline_variables: [
-            {   stimulus: trialtype.stimulus[1] },
-            {   stimulus: trialtype.stimulus[2] },
+            {   stimulus: 'img/blue.png' },
+            {   stimulus: 'img/orange.png' },
         ],
         randomize_order: false
     };
 
     
+  
+
     timeline.push(instructions1, instructions2, 
-        testingProcedure, finishInstructions);
+        testingProcedure);
 
     jsPsych.init({
         timeline: timeline,

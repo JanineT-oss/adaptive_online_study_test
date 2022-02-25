@@ -2,10 +2,11 @@
 //1. initialize jsPsych and saving result to a variable called jsPsych
 // add displayData via the on_finish callback function: which is useful for debugging; it will show the raw data collected at the end of the exp
 var jsPsych = initJsPsych({
-  on_finish: function() {
-    jsPsych.data.displayData();
+  on_finish: function(){ 
+    saveData(jsPsych.data.get()); 
   }
 });
+
 
 //2. all exp are defined by a timeline; will contain a set of trials we want to run in the experiment
 var timeline = [];
@@ -163,8 +164,36 @@ var debrief_block = {
 };
 timeline.push(debrief_block);
 
-//END. start the experiment 
+//11. start the experiment 
 jsPsych.run(timeline);
 
+//12. Save Data and redirect Exp Part 2
+function saveData(dataJS) {
+  // creates object with prolific id and experiment data
+  // sends json-object to php for storage needs to be added
 
-console.log(jsPsych);
+  // get data object
+  let data = dataJS;
+
+  // separate json and csv files
+  let jsonfile = data.json(); // fuer DB ist gerade noch nicht drin
+  let datfilt = data.filter({task: "response"});
+
+ 
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', 'saveExp1.php');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  console.log('I want to store this data:');
+  console.log(datfilt);
+  console.log('try to stringify:');
+  console.log(JSON.stringify(datfilt));
+
+  xhr.send(JSON.stringify(datfilt));
+
+  // Redirect to questionnaires and EXP PART 2
+  xhr.onload = function(){
+    window.location.assign('exp_part2.html');
+  };
+
+};

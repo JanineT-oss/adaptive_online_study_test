@@ -179,6 +179,22 @@ button:enabled{
 	display: none;
 }
 
+#LA{
+	display: none;
+}
+
+#RA{
+	display: none;
+}
+
+#IU{
+	display: none;
+}
+
+#SS{
+	display: none;
+}
+
 .surveyInfo{
 	padding-bottom:15px;
 }
