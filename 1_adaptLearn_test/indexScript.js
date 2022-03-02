@@ -80,7 +80,7 @@ document.getElementById("toExpBtn").addEventListener('click', function(e){
       // show error messages for invalid items
       demographicsform.reportValidity();
   } else {
-      // remove finished survey and load new survey
+     // remove finished survey and load new survey
       demographics[0].style.display = "none";
       expplaceholder[0].style.display = "block";
 
@@ -112,10 +112,19 @@ function saveConsent(data) {
   let xhr = new XMLHttpRequest();
   xhr.open('POST', 'saveConsent.php');
   xhr.setRequestHeader('Content-Type', 'application/json');
+  
+  // cross check echos in php script in console
+  xhr.onload=function(){
+    console.log(this.responseText);
+    
+  }
+
   xhr.send(JSON.stringify(params));
 
   console.log('i want store this data:');
   console.log(params);
+
+  
 };
 
 // 5. CALL SAVE REQUEST DEMOGRAPHICS AND TRIGGER EXP 
@@ -129,6 +138,13 @@ function saveSurvey(data) {
   let xhr = new XMLHttpRequest();
   xhr.open('POST', 'saveDemographics.php');
   xhr.setRequestHeader('Content-Type', 'application/json');
+  
+  // cross check echos in php script in console
+  xhr.onload=function(){
+    console.log(this.responseText);
+    
+  }
+
   xhr.send(JSON.stringify(params));
 
   console.log('i want store this data:');

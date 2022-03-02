@@ -30,29 +30,28 @@ $consent2 = $data['consent2'];
 //$date = $data['date'];
 //$time = $data['time'];
 
-
+echo $consent1;
+//echo $consent2;
 
 try {
-    $conn = new PDO("mysql:host='localhost';dbname='database_trial'", 'root', 'root');
-    //$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-   // $sql = "INSERT INTO $table_data(`prolific_id`, 
-   // `new_id`, `consent1`, `consent2`, 
-   // `consent3`, `consent4`, `consent5`, 
-   // `consent6`, `consent7`, `date`, `time`) VALUES ('$prolific_id',
-   // '$new_id','$consent1','$consent2', '$consent3',
-   // '$consent4', '$consent5', '$consent6','$consent7', '$date', '$time')";
+  //$sql = "INSERT INTO $table_data(`prolific_id`, 
+  //`new_id`, `consent1`, `consent2`, 
+  //`consent3`, `consent4`, `consent5`, 
+  //`consent6`, `consent7`, `date`, `time`) VALUES ('$prolific_id',
+  //'$new_id','$consent1','$consent2', '$consent3',
+  //'$consent4', '$consent5', '$consent6','$consent7', '$date', '$time')";
 
-   $sql = "INSERT INTO $table_data (`consent1`, `consent2`) VALUES ('$consent1','$consent2')";
+  $sql = "INSERT INTO $table_data(`consent1`, `consent2`) VALUES ('$consent1','$consent2')";
 
+  $insertstmt = $conn->prepare($sql);
 
-    $insertstmt = $conn->prepare($sql);
-
-    $insertstmt->execute();
-    echo '{"success": true}';
-  } catch(PDOException $e) {
-    echo '{"success": false, "message": ' . $e->getMessage();
-  }
-  $conn = null;
+  $insertstmt->execute();
+  echo '{"success": true}';
+} catch(PDOException $e) {
+  echo '{"success": false, "message": ' . $e->getMessage();
+}
+$conn = null;
 ?>

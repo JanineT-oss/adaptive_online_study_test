@@ -182,17 +182,25 @@ function saveData(dataJS) {
   let xhr = new XMLHttpRequest();
   xhr.open('POST', 'saveExp1.php');
   xhr.setRequestHeader('Content-Type', 'application/json');
-
+  
   console.log('I want to store this data:');
   console.log(datfilt);
   console.log('try to stringify:');
-  console.log(JSON.stringify(datfilt));
-
-  xhr.send(JSON.stringify(datfilt));
-
+  //console.log(JSON.stringify(datfilt));
+  
+  let test = JSON.stringify(datfilt);
+  console.log(test);
+  // cross check echos in php script in console
+  xhr.onload=function(){
+    console.log(this.responseText);
+    
+  }
+  
+  //xhr.send(JSON.stringify(datfilt));
+  xhr.send(JSON.test);
   // Redirect to questionnaires and EXP PART 2
-  xhr.onload = function(){
+ /* xhr.onload = function(){
     window.location.assign('exp_part2.html');
-  };
+  };*/
 
 };

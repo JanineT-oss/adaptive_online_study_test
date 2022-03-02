@@ -7,7 +7,7 @@ $post_data = json_decode(file_get_contents('php://input'), true);
 // extract ID and JSPsych data
 $id = $post_data['prolific_id'];
 $save_data = $post_data['data'];
-echo $id;
+echo $save_data;
 
 // the directory "data" must be writable by the www-data user!
 // path to directory
@@ -43,14 +43,14 @@ $country = $save_data['country'];
 $date = $save_data['date'];
 $time = $save_data['time'];
 
+echo $age;
+
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "INSERT INTO $table_data(`new_id`, 
-    `age`, `gender`, 
-    `education`, `employment`, `country`, `date`, `time`) VALUES ('$id',
-    '$age','$gender','$education', '$employment',
+    $sql = "INSERT INTO $table_data(`age`, `gender`, 
+    `education`, `employment`, `country`, `date`, `time`) VALUES ('$age','$gender','$education', '$employment',
     '$country', '$date', '$time')";
 
 
