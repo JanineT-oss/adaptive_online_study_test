@@ -33,7 +33,8 @@ $consent2 = $data['consent2'];
 
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = new PDO("mysql:host='localhost';dbname='database_trial'", 'root', 'root');
+    //$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
    // $sql = "INSERT INTO $table_data(`prolific_id`, 

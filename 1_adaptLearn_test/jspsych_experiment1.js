@@ -7,7 +7,6 @@ var jsPsych = initJsPsych({
   }
 });
 
-
 //2. all exp are defined by a timeline; will contain a set of trials we want to run in the experiment
 var timeline = [];
 

@@ -189,16 +189,14 @@ function saveSurvey(data) {
         document.styleSheets[0].disabled = true;
         runExperiment(dataPath);
     };
-
     xhr.send(JSON.stringify(params));
 };
 
 
-// 2. ENABLE PART2 WHEN PARAMS ARE FOUND
+// 2. LOOK FOR FILE 
 // path to param data
 const dataPath = `data/test_exp1.txt`;
 const continueButton = document.querySelector('#toPart2');
-
 // check for params file every 3 seconds and enable/disable button
 searchFile = setInterval(function() {
 
@@ -209,9 +207,11 @@ searchFile = setInterval(function() {
         console.log(xhr.status);
         if (xhr.status == "404") {
             continueButton.disabled = true;
+            console.log('file not found');
         } else {
             continueButton.disabled = false;
             clearInterval(searchFile);
+            console.log('file is ready');
         };
     }
     xhr.send();
@@ -230,8 +230,7 @@ function runExperiment(dataPath){
 
         xhr.onload = function(){
             window.location.assign('exp_part1.html');
-        };
-         
+        };      
         xhr.send(); 
     });     
 };
