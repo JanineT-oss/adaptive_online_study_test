@@ -70,8 +70,7 @@ var instructions_Exp = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: `
     <p>You have accomplished the test trials!</p>
-    <p>The experiment is going to start now.</p>
-    <p>Press F or J as fast as you can.</p>
+    <p>The experiment is going to start now.</p> d
     <p>Press any key to begin.</p>
   `,
   post_trial_gap: 2000
@@ -166,41 +165,45 @@ timeline.push(debrief_block);
 //11. start the experiment 
 jsPsych.run(timeline);
 
-//12. Save Data and redirect Exp Part 2
-function saveData(dataJS) {
-  // creates object with prolific id and experiment data
-  // sends json-object to php for storage needs to be added
+//12. SAVE Data and REDIRECT after saving to Exp Part 2
+function saveData(data) {
+  
+  // separate json and csv files to store json to DB and csv to disk
+  let jsonfile = data.json();
+  let csvfile = data.filter({task: "response"}).csv();
 
-  // get data object
-  let data = dataJS;
-
-  // separate json and csv files
-  let jsonfile = data.json(); // fuer DB ist gerade noch nicht drin
-  let datfilt = data.filter({task: "response"});
-
- 
+  // open request for sending csv file to disk
   let xhr = new XMLHttpRequest();
   xhr.open('POST', 'saveExp1.php');
   xhr.setRequestHeader('Content-Type', 'application/json');
-  
-  console.log('I want to store this data:');
-  console.log(datfilt);
-  console.log('try to stringify:');
-  //console.log(JSON.stringify(datfilt));
-  
-  let test = JSON.stringify(datfilt);
-  console.log(test);
-  // cross check echos in php script in console
-  xhr.onload=function(){
-    console.log(this.responseText);
-    
-  }
-  
-  //xhr.send(JSON.stringify(datfilt));
-  xhr.send(JSON.test);
-  // Redirect to questionnaires and EXP PART 2
- /* xhr.onload = function(){
-    window.location.assign('exp_part2.html');
-  };*/
 
-};
+  console.log('I want to store this data:');
+  console.log(csvfile);
+  
+    // cross check echos in php script in console
+    xhr.onload=function(){
+      console.log(this.responseText);
+    }
+
+  // open request to send json to DB
+  xhr.onload = function() {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'saveExp1DB.php'); 
+    xhr.setRequestHeader('Content-Type', 'application/json');
+  
+    xhr.onload = function() {
+      if(xhr.status == 200){
+        console.log(xhr.responseText);
+        console.log(this.responseText);
+      }
+    };
+    xhr.send(jsonfile);
+  };
+  xhr.send(JSON.stringify(csvfile));
+
+  // Redirect to questionnaires and EXP PART 2
+    xhr.onload = function(){
+    window.location.assign('exp_part2.html');
+  };
+
+}

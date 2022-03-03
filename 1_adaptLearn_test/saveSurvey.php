@@ -1,5 +1,5 @@
 <?php
-include('../php/database_config.php');
+include('database_config.php');
 $table_data = 'questionnaires';
 
 
@@ -30,22 +30,30 @@ $audit6 = $data['audit6'];
 $audit7 = $data['audit7'];
 $audit8 = $data['audit8'];
 $audit9 = $data['audit9'];
-$audit10 = $data['audit10'];
+$LA1 = $data['LA1'];
+$LA2 = $data['LA2'];
+$LA3 = $data['LA3'];
+$LA4 = $data['LA4'];
+$LA5 = $data['LA5'];
+$LA6 = $data['LA6'];
+$LA7 = $data['LA7'];
+$RA1 = $data['RA1'];
+$RA2 = $data['RA2'];
+$RA3 = $data['RA3'];
+$RA4 = $data['RA4'];
+$IU1 = $data['IU1'];
+$IU2 = $data['IU1'];
+$IU3 = $data['IU3'];
+$IU4 = $data['IU4'];
+$IU5 = $data['IU5'];
+$SS1 = $data['SS1'];
+$SS2 = $data['SS2'];
+$SS3 = $data['SS3'];
+$bis1 = $data['bis1'];
 $bis1 = $data['bis1'];
 $bis2 = $data['bis2'];
 $bis3 = $data['bis3'];
-$bis4 = $data['bis4'];
-$bis5 = $data['bis5'];
-$bis6 = $data['bis6'];
-$bis7 = $data['bis7'];
-$bis8 = $data['bis8'];
-$bis9 = $data['bis9'];
-$bis10 = $data['bis10'];
-$bis11 = $data['bis11'];
-$bis12 = $data['bis12'];
-$bis13 = $data['bis13'];
-$bis14 = $data['bis14'];
-$bis15 = $data['bis15'];
+
 
 
 
@@ -53,15 +61,17 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "INSERT INTO $table_data(`new_id`, `date`, `time`,
-    `audit1`,`audit2`,`audit3`,`audit4`,`audit5`,`audit6`,`audit7`,`audit8`,`audit9`,
-    `audit10`,
-    `bis1`,`bis2`,`bis3`,`bis4`,`bis5`,`bis6`,`bis7`,`bis8`,`bis9`,`bis10`,
-    `bis11`,`bis12`,`bis13`,`bis14`,`bis15`) VALUES ('$id', '$date', '$time',
-    '$audit1','$audit2','$audit3','$audit4','$audit5','$audit6','$audit7','$audit8',
-    '$audit9','$audit10',
-    '$bis1','$bis2','$bis3','$bis4','$bis5','$bis6','$bis7','$bis8','$bis9','$bis10',
-    '$bis11','$bis12','$bis13','$bis14','$bis15')";
+    $sql = "INSERT INTO $table_data(`audit1`,`audit2`,`audit3`,`audit4`,`audit5`,`audit6`,`audit7`,`audit8`,`audit9`,`audit10`,
+    `LA1`,`LA2`,`LA3`,`LA4`,`LA5`,`LA6`,`LA7`,
+    `RA1`,`RA2`,`RA3`,`RA4`,
+    `IU1`,`IU2`,`IU3`,`IU4`,`IU5`,
+    `SS1`,`SS2`,`SS3`,
+    `bis1`,`bis2`,`bis3`) VALUES ('$audit1','$audit2','$audit3','$audit4','$audit5','$audit6','$audit7','$audit8','$audit9','$audit10',
+    '$LA1','$LA2','$LA3','$LA4','$LA5','$LA6','$LA7',
+    '$RA1','$RA2','$RA3','$RA4',
+    '$IU1','$IU2','$IU3','$IU4','$IU5',
+    '$SS1','$SS2','$SS3',
+    '$bis1','$bis2','$bis3')";
 
 
     $insertstmt = $conn->prepare($sql);
