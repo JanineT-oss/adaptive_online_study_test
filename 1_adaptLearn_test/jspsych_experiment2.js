@@ -228,6 +228,7 @@ function runExperiment(dataPath){
         let xhr = new XMLHttpRequest();
         xhr.open('HEAD', dataPath, true);
 
+        // prompts exp again
         xhr.onload = function(){
             window.location.assign('exp_part1.html');
         };      
