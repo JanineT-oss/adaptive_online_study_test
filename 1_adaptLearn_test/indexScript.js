@@ -24,6 +24,11 @@ document.getElementById("toConsBtn").addEventListener('click', function(e){
       prolific[0].style.display = "none";
       consent[0].style.display = "block";
 
+     // let consentJSON = sessionStorage.getItem('id');
+      
+     // sessionStorage.setItem('prolific_id');
+     // console.log(sessionStorage.getItem('id'));
+
   }
 });
 
@@ -52,8 +57,8 @@ document.getElementById("toDemoBtn").addEventListener('click', function(e){
       let consentJSON = Object.fromEntries(consentData.entries());
 
       // add id to json
-      consentJSON['prolific_id'] = sessionStorage.getItem('prolific_id');
-      console.log(sessionStorage.getItem('prolific_id'));
+      consentJSON['id'] = sessionStorage.getItem('id');
+      console.log(sessionStorage.getItem('id'));
 
       // get date and time for storage
       let jsdate = new Date();

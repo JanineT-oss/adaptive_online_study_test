@@ -44,7 +44,7 @@ try {
   //'$new_id','$consent1','$consent2', '$consent3',
   //'$consent4', '$consent5', '$consent6','$consent7', '$date', '$time')";
 
-  $sql = "INSERT INTO $table_data(`consent1`, `consent2`) VALUES ('$consent1','$consent2')";
+  $sql = "INSERT INTO $table_data(`prolific_id`, `consent1`, `consent2`) VALUES ('$prolific_id','$consent1','$consent2')";
 
   $insertstmt = $conn->prepare($sql);
 
