@@ -171,6 +171,33 @@ document.getElementById("toPart2").addEventListener('click', function(e){
     }
 });
 
+// redirect to index if no Prolific ID is stored
+//console.log(sessionStorage.getItem('prolific_id'));
+window.onload = function() {
+    if(sessionStorage.getItem('prolific_id') === null) {
+        //window.location.assign('index.html');
+        let prolific_id = 'testSub'; // workaround
+        startPython(prolific_id);
+    } else {
+        let prolific_id = sessionStorage.getItem('prolific_id');
+        startPython(prolific_id);
+    }
+};
+
+// Start Python to check correct answers
+function startPython(id) {
+    let params = {
+        "prolific_id": id
+    };    
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'startPython.php');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function(){
+        console.log(this.responseText);
+    };
+    xhr.send(JSON.stringify(params));
+};
+
 // Save Funktion + Triggern Exp part 2
 function saveSurvey(data) {
     // creates object with prolific id and experiment data
@@ -193,11 +220,11 @@ function saveSurvey(data) {
 };
 
 
-// 2. LOOK FOR FILE 
-// path to param data
-const dataPath = `data/test_exp1.txt`;
+// 2. LOOK FOR PYTHON CREATED FILE 
+// path to python data
+const dataPath = `data/test_exp1_corrResp.txt`;
 const continueButton = document.querySelector('#toPart2');
-// check for params file every 3 seconds and enable/disable button
+// check for file file every 3 seconds and enable/disable button
 searchFile = setInterval(function() {
 
     let xhr = new XMLHttpRequest();
